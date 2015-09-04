@@ -1,0 +1,46 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Where is Marvin?</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</head>
+<script type="text/javascript">
+    var request = function(){
+      $.ajax({
+        type: "GET",
+        url: "/status"
+      })
+      .done(function(data) {
+        if(data === "connected"){
+          $("#connected").show();
+          $("#disconnected").hide();
+
+        }
+        else if(data ==="disconnected"){
+          $("#connected").hide();
+          $("#disconnected").show();
+
+        }
+        console.log(data);
+      })
+      .fail(function() {
+        console.log( "error" );
+      })
+      setTimeout(request,5000);
+    }
+
+  request();
+    
+</script>
+<body>
+  <div class =header>
+    <br>Where is Marvin? </br>
+    <!-- <div class="symbol_container"></div> -->
+  </div>
+  <div class="wrapper">
+      <h1 id="connected" style="display:none">He's Close<h1>
+      <h1 id="disconnected" style="display:none">¯\_(ツ)_/¯<h1>
+  </div>
+</body>
+  </html>
