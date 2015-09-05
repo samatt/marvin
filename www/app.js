@@ -23,15 +23,17 @@ app.get('/status', function (req, res) {
 	}
 
 	if(connected){
-		console.log("connected");
+		// console.log("connected:"+duration.toString());
 		// res.sendFile(__dirname+'/index_alt.html');
-		res.send("connected");
+		res.send("connected:"+duration.toString());
 	}
 	else{
-		console.log("disconnected");
-		res.send("disconnected");
+		// console.log("disconnected");
+		// console.log("disconnected:"+duration.toString());
+		res.send("disconnected:"+duration.toString());
 		// res.sendFile(__dirname+'/index.html');
 	}
+
 
 });
 
