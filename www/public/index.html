@@ -11,18 +11,22 @@
         type: "GET",
         url: "/status"
       })
-      .done(function(data) {
-        if(data === "connected"){
+      .done(function(d) {
+        var data = d.split(":")
+        if(data[0] === "connected"){
           $("#connected").show();
           $("#disconnected").hide();
+          // console.log("Last Seen : "+ data[1]);
+          
 
         }
-        else if(data ==="disconnected"){
+        else if(data[0] ==="disconnected"){
           $("#connected").hide();
           $("#disconnected").show();
-
+          // console.log("Last Seen : "+ data[1]);
         }
-        console.log(data);
+        $("#lastseen").text("Last Seen : "+ parseInt(data[1]) +" seconds ago");
+        // console.log(data);
       })
       .fail(function() {
         console.log( "error" );
@@ -41,6 +45,7 @@
   <div class="wrapper">
       <h1 id="connected" style="display:none">He's Close<h1>
       <h1 id="disconnected" style="display:none">¯\_(ツ)_/¯<h1>
+      <p id="lastseen" ><p>
   </div>
 </body>
   </html>
